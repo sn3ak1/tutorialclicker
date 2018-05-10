@@ -3,13 +3,21 @@ package com.sn3aky.screens;
 import com.badlogic.gdx.graphics.Texture;
 import com.sn3aky.tutorialclicker.TutorialClickerGame;
 
+
 public class SplashScreen extends AbstractScreen {
 
     private Texture splashImg;
 
-    public SplashScreen(TutorialClickerGame game) {
+    public SplashScreen(final TutorialClickerGame game) {
         super(game);
         init();
+
+        com.badlogic.gdx.utils.Timer.schedule(new com.badlogic.gdx.utils.Timer.Task() {
+            @Override
+            public void run() {
+                game.setScreen(new GameplayScreen(game));
+            }
+        },1);
     }
 
     private void init() {
