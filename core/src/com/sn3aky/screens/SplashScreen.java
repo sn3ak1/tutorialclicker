@@ -10,7 +10,6 @@ public class SplashScreen extends AbstractScreen {
 
     public SplashScreen(final TutorialClickerGame game) {
         super(game);
-        init();
 
         com.badlogic.gdx.utils.Timer.schedule(new com.badlogic.gdx.utils.Timer.Task() {
             @Override
@@ -20,7 +19,9 @@ public class SplashScreen extends AbstractScreen {
         },1);
     }
 
-    private void init() {
+
+    @Override
+    protected void init() {
         splashImg=new Texture("badlogic.jpg");
     }
 
