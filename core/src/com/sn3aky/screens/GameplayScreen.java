@@ -14,7 +14,6 @@ public class GameplayScreen extends AbstractScreen {
 
     GameplayScreen(TutorialClickerGame game) {
         super(game);
-        init();
     }
 
     @Override
@@ -29,13 +28,15 @@ public class GameplayScreen extends AbstractScreen {
         playerButton.setHeight(360);
         playerButton.setX(10);
         playerButton.setY(170);
-        playerButton.setDebug(true);
+//        playerButton.setDebug(true);
 
         stage.addActor(playerButton);
 
         playerButton.addListener(new ClickListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                player.reactOnClick();
 
                 return super.touchDown(event, x, y, pointer, button);
             }
