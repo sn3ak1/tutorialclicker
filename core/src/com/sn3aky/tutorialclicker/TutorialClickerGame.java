@@ -13,6 +13,7 @@ public class TutorialClickerGame extends Game {
 	public static final int WIDTH = 480;
 	public static final int HEIGHT = 700;
 	private boolean paused;
+	private int points;
 
 
 	@Override
@@ -20,7 +21,9 @@ public class TutorialClickerGame extends Game {
 		this.setScreen(new SplashScreen(this));
 	}
 
-
+	public void addPoint(){
+		points++;
+	}
 
 	//getters and setters
 	public boolean isPaused() {
@@ -29,5 +32,9 @@ public class TutorialClickerGame extends Game {
 
 	public void setPaused(boolean paused) {
 		this.paused = paused;
+	}
+
+	public int getPoints() {
+		return points;
 	}
 }
