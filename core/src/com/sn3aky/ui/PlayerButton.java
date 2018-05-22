@@ -3,6 +3,7 @@ package com.sn3aky.ui;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.sn3aky.tutorialclicker.TutorialClickerGame;
 
 public class PlayerButton extends Button {
 
@@ -12,10 +13,10 @@ public class PlayerButton extends Button {
     }
 
     private void init(final IClickCallback callback) {
-        this.setWidth(460);
-        this.setHeight(360);
-        this.setX(10);
-        this.setY(170);
+        this.setWidth(TutorialClickerGame.WIDTH);
+        this.setHeight(TutorialClickerGame.HEIGHT);
+        this.setX(0);
+        this.setY(0);
 
         this.addListener(new ClickListener(){
             @Override

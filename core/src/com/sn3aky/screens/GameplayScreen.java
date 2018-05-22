@@ -24,8 +24,8 @@ public class GameplayScreen extends AbstractScreen {
     protected void init() {
         initBgImage();
         initPlayer();
-        initPlayerButton();
         initScoreLabel();
+        initPlayerButton();
         initResetScoreButton();
     }
 
