@@ -1,18 +1,17 @@
 package com.sn3aky.screens;
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.sn3aky.entities.Player;
 import com.sn3aky.tutorialclicker.TutorialClickerGame;
+import com.sn3aky.ui.IClickCallback;
+import com.sn3aky.ui.PlayerButton;
+import com.sn3aky.ui.ResetScoreButton;
+import com.sn3aky.ui.ScoreLabel;
 
 
 public class GameplayScreen extends AbstractScreen {
 
     private Player player;
-    private Label scoreLabel;
+    private ScoreLabel scoreLabel;
 
     GameplayScreen(TutorialClickerGame game) {
         super(game);
@@ -26,53 +25,33 @@ public class GameplayScreen extends AbstractScreen {
         initResetScoreButton();
     }
 
-    private void initResetScoreButton() {
-        Button resetScoreButton = new Button(new Button.ButtonStyle());
-        resetScoreButton.setWidth(100);
-        resetScoreButton.setHeight(100);
-        resetScoreButton.setX(330);
-        resetScoreButton.setY(560);
-        resetScoreButton.setDebug(true);
-
-        stage.addActor(resetScoreButton);
-
-        resetScoreButton.addListener(new ClickListener(){
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                game.resetGameScore();
-                scoreLabel.setText("Score: "+game.getPoints());
-                return super.touchDown(event, x, y, pointer, button);
-            }
-        });
-    }
 
     private void initScoreLabel() {
-        Label.LabelStyle labelStyle = new Label.LabelStyle();
-        labelStyle.font = new BitmapFont();
-        scoreLabel = new Label("Score: " + game.getPoints(),labelStyle);
-        scoreLabel.setX(20);
-        scoreLabel.setY(650);
+        scoreLabel = new ScoreLabel("Score: " + game.getPoints());
         stage.addActor(scoreLabel);
     }
 
-    private void initPlayerButton() {
-        Button playerButton = new Button(new Button.ButtonStyle());
-        playerButton.setWidth(460);
-        playerButton.setHeight(360);
-        playerButton.setX(10);
-        playerButton.setY(170);
-
-        stage.addActor(playerButton);
-
-        playerButton.addListener(new ClickListener(){
+    private void initResetScoreButton() {
+        ResetScoreButton resetScoreButton = new ResetScoreButton(new IClickCallback() {
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            public void onClick() {
+                game.resetGameScore();
+                scoreLabel.setText("Score: "+game.getPoints());
+            }
+        });
+        stage.addActor(resetScoreButton);
+    }
+
+    private void initPlayerButton() {
+        PlayerButton playerButton = new PlayerButton(new IClickCallback(){
+            @Override
+            public void onClick() {
                 player.reactOnClick();
                 game.addPoint();
                 scoreLabel.setText("Score: "+game.getPoints());
-                return super.touchDown(event, x, y, pointer, button);
             }
         });
+        stage.addActor(playerButton);
     }
 
     private void initPlayer() {
