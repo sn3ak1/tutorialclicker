@@ -1,5 +1,7 @@
 package com.sn3aky.screens;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.sn3aky.entities.Player;
 import com.sn3aky.tutorialclicker.TutorialClickerGame;
 import com.sn3aky.ui.IClickCallback;
@@ -10,6 +12,7 @@ import com.sn3aky.ui.ScoreLabel;
 
 public class GameplayScreen extends AbstractScreen {
 
+    private Image bgImage;
     private Player player;
     private ScoreLabel scoreLabel;
 
@@ -19,10 +22,16 @@ public class GameplayScreen extends AbstractScreen {
 
     @Override
     protected void init() {
+        initBgImage();
         initPlayer();
         initPlayerButton();
         initScoreLabel();
         initResetScoreButton();
+    }
+
+    private void initBgImage() {
+        bgImage =new Image(new Texture("bg.png"));
+        stage.addActor(bgImage);
     }
 
 
