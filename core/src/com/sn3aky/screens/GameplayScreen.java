@@ -28,7 +28,7 @@ public class GameplayScreen extends AbstractScreen {
     private void initScoreLabel() {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font = new BitmapFont();
-        scoreLabel = new Label("",labelStyle);
+        scoreLabel = new Label("Score: 0",labelStyle);
         scoreLabel.setX(20);
         scoreLabel.setY(650);
         stage.addActor(scoreLabel);
@@ -40,7 +40,6 @@ public class GameplayScreen extends AbstractScreen {
         playerButton.setHeight(360);
         playerButton.setX(10);
         playerButton.setY(170);
-//        playerButton.setDebug(true);
 
         stage.addActor(playerButton);
 
@@ -49,7 +48,7 @@ public class GameplayScreen extends AbstractScreen {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 player.reactOnClick();
                 game.addPoint();
-
+                scoreLabel.setText("Score: "+game.getPoints());
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
