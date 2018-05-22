@@ -1,18 +1,17 @@
 package com.sn3aky.screens;
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.sn3aky.entities.Player;
 import com.sn3aky.tutorialclicker.TutorialClickerGame;
 import com.sn3aky.ui.IClickCallback;
 import com.sn3aky.ui.PlayerButton;
 import com.sn3aky.ui.ResetScoreButton;
+import com.sn3aky.ui.ScoreLabel;
 
 
 public class GameplayScreen extends AbstractScreen {
 
     private Player player;
-    private Label scoreLabel;
+    private ScoreLabel scoreLabel;
 
     GameplayScreen(TutorialClickerGame game) {
         super(game);
@@ -28,11 +27,7 @@ public class GameplayScreen extends AbstractScreen {
 
 
     private void initScoreLabel() {
-        Label.LabelStyle labelStyle = new Label.LabelStyle();
-        labelStyle.font = new BitmapFont();
-        scoreLabel = new Label("Score: " + game.getPoints(),labelStyle);
-        scoreLabel.setX(20);
-        scoreLabel.setY(650);
+        scoreLabel = new ScoreLabel("Score: " + game.getPoints());
         stage.addActor(scoreLabel);
     }
 
