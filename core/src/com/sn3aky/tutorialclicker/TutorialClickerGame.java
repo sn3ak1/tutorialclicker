@@ -35,11 +35,9 @@ public class TutorialClickerGame extends Game {
 
     public void addPoint(){
 		points++;
-		preferences.putInteger(GAME_SCORE,points);
-		preferences.flush();
+        updateSavedScore();
 	}
 
-	//getters and setters
 	public boolean isPaused() {
 		return paused;
 	}
@@ -51,4 +49,14 @@ public class TutorialClickerGame extends Game {
 	public int getPoints() {
 		return points;
 	}
+
+    public void resetGameScore() {
+        points=0;
+        updateSavedScore();
+    }
+
+    private void updateSavedScore() {
+        preferences.putInteger(GAME_SCORE,points);
+        preferences.flush();
+    }
 }
