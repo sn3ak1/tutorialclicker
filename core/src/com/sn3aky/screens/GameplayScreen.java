@@ -7,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.sn3aky.entities.Player;
 import com.sn3aky.tutorialclicker.TutorialClickerGame;
+import com.sn3aky.ui.IClickCallback;
+import com.sn3aky.ui.PlayerButton;
 
 
 public class GameplayScreen extends AbstractScreen {
@@ -56,23 +58,15 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void initPlayerButton() {
-        Button playerButton = new Button(new Button.ButtonStyle());
-        playerButton.setWidth(460);
-        playerButton.setHeight(360);
-        playerButton.setX(10);
-        playerButton.setY(170);
-
-        stage.addActor(playerButton);
-
-        playerButton.addListener(new ClickListener(){
+        PlayerButton playerButton = new PlayerButton(new IClickCallback(){
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            public void onClick() {
                 player.reactOnClick();
                 game.addPoint();
                 scoreLabel.setText("Score: "+game.getPoints());
-                return super.touchDown(event, x, y, pointer, button);
             }
         });
+        stage.addActor(playerButton);
     }
 
     private void initPlayer() {
