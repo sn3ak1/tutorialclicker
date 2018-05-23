@@ -45,7 +45,6 @@ public class GameplayScreen extends AbstractScreen {
             @Override
             public void onClick() {
                 game.resetGameScore();
-                scoreLabel.setText("Score: "+game.getPoints());
             }
         });
         stage.addActor(resetScoreButton);
@@ -57,7 +56,6 @@ public class GameplayScreen extends AbstractScreen {
             public void onClick() {
                 player.reactOnClick();
                 game.addPoint();
-                scoreLabel.setText("Score: "+game.getPoints());
             }
         });
         stage.addActor(playerButton);
@@ -80,5 +78,7 @@ public class GameplayScreen extends AbstractScreen {
 
     private void update() {
         stage.act();
+        if(game.pointChanged())
+            scoreLabel.setText("Score: "+game.getPoints());
     }
 }
